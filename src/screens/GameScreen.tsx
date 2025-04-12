@@ -354,7 +354,7 @@ const GameScreen = () => {
                     ))}
                 </View>
 
-                <View style={{ height: wp('5%') }} /> {/* Spacer */}
+                <View style={{ height: wp('5%') }} /> 
                 {/* 底部按钮区域，自适应位置 */}
                 <GameFooter gameStatus={gameStatus} onRestartPress={resetGame} />
             </View>
