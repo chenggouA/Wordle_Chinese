@@ -17,7 +17,7 @@ jobs:
           node-version: 18
 
       - name: 📦 Install dependencies
-        run: npm install jsdom @octokit/rest
+        run: npm install jsdom @octokit/rest marked
 
       - name: 🧠 Run changelog regeneration script
         run: node .github/scripts/updateChangelogFromReleases.mjs
