@@ -1,35 +1,33 @@
-name: 📝 Sync Release to log.html
-
+name: 🔄 Rebuild log.html from all releases
 
 on:
-  release:
-    types: [published]
-
-  workflow_dispatch:  # ✅ 可手动触发
+  workflow_dispatch:
 
 jobs:
-  update-changelog:
+  rebuild-log:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v3
 
-      - name: 🟢 Setup Node
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 📦 Install jsdom
-        run: npm install jsdom
+      - name: 📦 Install dependencies
+        run: npm install jsdom @octokit/rest
 
-      - name: 🧠 Run changelog script
-        run: node .github/scripts/updateChangelog.js
+      - name: 🧠 Run changelog regeneration script
+        run: node .github/scripts/updateChangelogFromReleases.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: ✅ Commit & Push
+      - name: ✅ Commit & push updated log.html
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add log.html
-          git commit -m "🤖 更新 changelog 页面：${{ github.event.release.tag_name }}"
+          git commit -m "🔄 rebuild log.html from all releases"
           git push
