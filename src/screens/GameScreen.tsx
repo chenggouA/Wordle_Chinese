@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import idioms from "../../assets/idiom_list.json"
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     View,
@@ -10,13 +9,11 @@ import {
     Alert,
     StyleSheet
 } from 'react-native';
-import { Video } from 'expo-av';
 import { pinyin } from 'pinyin-pro';
 
 import GameTile, { CharacterTile } from '../components/GameTile'; // 使用 moti 动画增强 GameTile
 import InputModal from '../components/InputModal';
 import GameHeader from '../components/GameHeader';
-import GameFooter from '../components/GameFooter';
 import { separatePinyin, isChinese, getPinyin } from '../utils/pinyin';
 
 const initializeGameBoard = (): CharacterTile[][] => {
@@ -228,21 +225,37 @@ const GameScreen = () => {
         const isCorrect = currentRow.every(t => t.status === 'correct');
         if (isCorrect) {
             setGameStatus('won');
-            setSolvedCount(prev => prev + 1);
-            setCurrentSolvedRow(row + 1); // ✅ 本轮是第几次猜对的（从 1 开始）
-            await AsyncStorage.setItem('user_solved_count', (solvedCount + 1).toString());
             saveGameRecord('won');
-            Alert.alert('恭喜', '你猜对了！');
+            Alert.alert(
+                '🎉 恭喜你！',
+                '你猜对了本轮成语！',
+                [
+                    {
+                        text: '下一局',
+                        onPress: () => resetGame(),
+                    },
+                ]
+            );
         } else if (row === tiles.length - 1) {
             setGameStatus('lost');
             saveGameRecord('lost');
-            Alert.alert('游戏结束', `正确答案是: ${targetIdiom.map(i => i.character).join('')}`);
+            Alert.alert(
+                '💀 游戏结束',
+                `正确答案是：${targetIdiom.map(i => i.character).join('')}`,
+                [
+                    {
+                        text: '再来一局',
+                        onPress: () => resetGame(),
+                    },
+                ]
+            );
         } else {
 
             setCurrentSolvedRow(row + 1); // ✅ 本轮是第几次猜对的（从 1 开始）
             setActiveRow(row + 1);
             setSelectedTile(null);
         }
+
     };
 
     const moveToNextEmptyTile = (row: number, col: number) => {
@@ -313,15 +326,11 @@ const GameScreen = () => {
             <StatusBar barStyle="dark-content" />
 
             {/* 背景视频 */}
-            <Video
-                source={require('../../assets/background.mp4')}
+            <ImageBackground
+                source={require('../../assets/bg_home.png')}
                 style={StyleSheet.absoluteFill}
                 resizeMode="cover"
-                shouldPlay
-                isLooping
-                isMuted
             />
-
             {/* 头部信息 */}
             <GameHeader
                 time={time}
@@ -354,9 +363,6 @@ const GameScreen = () => {
                     ))}
                 </View>
 
-                <View style={{ height: wp('5%') }} /> 
-                {/* 底部按钮区域，自适应位置 */}
-                <GameFooter gameStatus={gameStatus} onRestartPress={resetGame} />
             </View>
 
             {/* 输入弹窗 */}
