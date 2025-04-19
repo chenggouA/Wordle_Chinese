@@ -1,4 +1,4 @@
-// .github/scripts/updateChangelogFromReleases.js
+// .github/scripts/updateChangelogFromReleases.mjs
 const fs = require("fs");
 const { Octokit } = require("@octokit/rest");
 const { JSDOM } = require("jsdom");

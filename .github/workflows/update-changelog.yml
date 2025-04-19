@@ -20,7 +20,7 @@ jobs:
         run: npm install jsdom @octokit/rest
 
       - name: 🧠 Run changelog regeneration script
-        run: node .github/scripts/updateChangelogFromReleases.js
+        run: node .github/scripts/updateChangelogFromReleases.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
