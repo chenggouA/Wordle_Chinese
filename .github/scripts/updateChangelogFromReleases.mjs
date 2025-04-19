@@ -1,7 +1,10 @@
 // .github/scripts/updateChangelogFromReleases.mjs
-const fs = require("fs");
-const { Octokit } = require("@octokit/rest");
-const { JSDOM } = require("jsdom");
+
+
+import { Octokit } from "@octokit/rest";
+import fs from "fs";
+import { JSDOM } from "jsdom";
+
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const owner = "chenggouA";
