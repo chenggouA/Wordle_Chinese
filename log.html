@@ -101,7 +101,45 @@
 
     <div class="container">
       <div class="version">
-        <h2>📌 v1.0.1 <span style="font-size: 0.9rem; color: #888;">- 2025-04-19</span></h2>
+        <h2>📌 v1.0.2 <span style="font-size: 0.9rem; color: #888;">- 2025-04-20</span></h2>
+        <ul>
+          <li><a class="release-link" href="https://github.com/chenggouA/Wordle_Chinese/releases/tag/v1.0.2" target="_blank">📄 发布详情页</a></li>
+        </ul>
+        <div class="release-body">
+          <h2>📦 Release v1.0.2</h2>
+<h3>✨ 新功能</h3>
+<ul>
+<li><p><strong>添加历史对战页面（BattleHistory）</strong></p>
+<ul>
+<li>支持展示每场对战结果（胜/负）</li>
+<li>成功对战会显示荣誉称号与描述（如：一鸣惊人、学富五车等）</li>
+<li>使用毛玻璃风格卡片 + 古风战场背景增强视觉沉浸感</li>
+<li>支持从本地 <code>AsyncStorage</code> 自动加载历史记录</li>
+</ul>
+</li>
+<li><p><strong>根据答对次数动态显示成就称号</strong></p>
+<ul>
+<li>第 1 次成功 → 一鸣惊人</li>
+<li>第 2 次成功 → 举世无双</li>
+<li>...</li>
+<li>共支持 6 个等级，超出范围默认“卓尔不群”</li>
+<li>成就信息在游戏顶部 <code>GameHeader</code> 实时展示</li>
+</ul>
+</li>
+</ul>
+<h3>🧪 其他更新</h3>
+<ul>
+<li><code>GameHeader</code> 成就显示逻辑重构，避免状态滞后一帧问题</li>
+<li>将成就称号与描述提取为独立配置文件 <code>achievements.ts</code> 以便维护</li>
+</ul>
+<hr>
+
+        </div>
+      </div>
+    
+
+      <div class="version">
+        <h2>📌 v1.0.1 <span style="font-size: 0.9rem; color: #888;">- 2025-04-20</span></h2>
         <ul>
           <li><a class="release-link" href="https://github.com/chenggouA/Wordle_Chinese/releases/tag/v1.0.1" target="_blank">📄 发布详情页</a></li>
         </ul>
