@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { achievementTexts } from '../../data/achievements';
 
 interface GameHeaderProps {
   time: string;
@@ -26,19 +27,21 @@ const GameHeader: React.FC<GameHeaderProps> = ({
         <Text style={styles.roundText}>第{round}场</Text>
       </View>
 
-        <View style={styles.achievementContainer}>
+      <View style={styles.achievementContainer}>
         {typeof currentSolvedRow === 'number' && (
-            <Text style={styles.achievementText}>{currentSolvedRow}次得解 卓尔不群</Text>
+          <Text style={styles.achievementText}>
+            第{currentSolvedRow}次得解 {achievementTexts[currentSolvedRow - 1] || '卓尔不群'}
+          </Text>
         )}
-        </View>
+      </View>
 
-        <View style={[styles.timeContainer, { display: 'none' }]}>
+      <View style={[styles.timeContainer, { display: 'none' }]}>
         <Text style={styles.timeText}>{time}</Text>
-        </View>
+      </View>
 
 
 
-     
+
     </View>
   );
 };
@@ -83,12 +86,12 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     marginRight: 10,
-    
+
   },
   timeText: {
     fontSize: 16,
-     color: '#4B0082',
-    
+    color: '#4B0082',
+
   },
   rankButton: {
     width: 50,

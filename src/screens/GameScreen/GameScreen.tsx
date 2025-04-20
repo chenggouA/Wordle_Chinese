@@ -325,7 +325,6 @@ const GameScreen = () => {
         <SafeAreaView style={{ flex: 1 }}>
             <StatusBar barStyle="dark-content" />
 
-            {/* 背景视频 */}
             <ImageBackground
                 source={require('../../../assets/bg_home.png')}
                 style={StyleSheet.absoluteFill}
@@ -335,10 +334,10 @@ const GameScreen = () => {
             <GameHeader
                 time={time}
                 round={round}
-                currentSolvedRow={gameStatus === 'won' ? currentSolvedRow : undefined}
+                currentSolvedRow={gameStatus === 'won' ? activeRow + 1 : undefined}
             />
 
-            {/* 游戏主体 + footer 包一层大容器 */}
+
             <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 10 }}>
                 {/* 游戏格子区域 */}
                 <View style={{ alignItems: 'center', flexGrow: 1, }}>
