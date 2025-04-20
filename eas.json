@@ -3,7 +3,7 @@
     "version": ">= 3.0.0"
   },
   "build": {
-    "release": {
+    "preview": {
       "android": {
         "buildType": "apk"
       }

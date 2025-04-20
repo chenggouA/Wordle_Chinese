@@ -30,6 +30,15 @@
         "projectId": "f1a32e5b-7e7a-481e-bc3e-4c5c935c2e99"
       }
     },
-    "owner": "chenggou"
+    "owner": "chenggou",
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/f1a32e5b-7e7a-481e-bc3e-4c5c935c2e99"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
   }
 }
