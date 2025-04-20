@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import idioms from "../../assets/idiom_list.json"
+import idioms from "../../../assets/idiom_list.json"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     View,
@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 import { pinyin } from 'pinyin-pro';
 
-import GameTile, { CharacterTile } from '../components/GameTile'; // 使用 moti 动画增强 GameTile
-import InputModal from '../components/InputModal';
-import GameHeader from '../components/GameHeader';
-import { separatePinyin, isChinese, getPinyin } from '../utils/pinyin';
+import GameTile, { CharacterTile } from './GameTile';
+import InputModal from '../../components/InputModal';
+import GameHeader from './GameHeader';
+import { separatePinyin, isChinese, getPinyin } from '../../utils/pinyin';
 
 const initializeGameBoard = (): CharacterTile[][] => {
     const board: CharacterTile[][] = [];
@@ -327,7 +327,7 @@ const GameScreen = () => {
 
             {/* 背景视频 */}
             <ImageBackground
-                source={require('../../assets/bg_home.png')}
+                source={require('../../../assets/bg_home.png')}
                 style={StyleSheet.absoluteFill}
                 resizeMode="cover"
             />
